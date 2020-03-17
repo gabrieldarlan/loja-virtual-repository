@@ -10,14 +10,24 @@ public class TestaInsercaoComParametro {
 
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.getConnection();
-		String nome = "Televisao";
-		String descricao = "Televisao Grande";
+		connection.setAutoCommit(false);
 
 		PreparedStatement statement = connection.prepareStatement("INSERT INTO PRODUTO (nome, descricao) VALUES(?, ?)",
 				Statement.RETURN_GENERATED_KEYS);
-		
+
+		adicionarVariavel("SmarTv", "45 polegadas", statement);
+		adicionarVariavel("Radio", "Radio de bateria", statement);
+	}
+
+	private static void adicionarVariavel(String nome, String descricao, PreparedStatement statement)
+			throws SQLException {
 		statement.setString(1, nome);
 		statement.setString(2, descricao);
+		
+		/*
+		 * if(nome.equals("Radio")) { throw new
+		 * RuntimeException("Não foi possivel adicionar o produto"); }
+		 */
 		statement.execute();
 
 		ResultSet resultSet = statement.getGeneratedKeys();
@@ -25,5 +35,6 @@ public class TestaInsercaoComParametro {
 			Integer id = resultSet.getInt(1);
 			System.out.println("O id criado foi: " + id);
 		}
+		resultSet.close();
 	}
 }
