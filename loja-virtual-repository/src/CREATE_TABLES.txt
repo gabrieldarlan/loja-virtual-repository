@@ -1,0 +1,19 @@
+#create database loja_virtual;
+#USE loja_virtual;
+
+#CREATE TABLE PRODUTO(
+#	id INT auto_increment,
+#    nome varchar(50) NOT NULL,
+#    descricao varchar(255),
+#    primary key (id)) Engine = InnoDB;
+
+#insert into produto (nome, descricao) values ('GELADEIRA', 'GELADEIRA AZUL');
+
+#select * from produto;
+
+#delete from produto where id >=3;
+
+#show processlist;
+
+#CREATE TABLE CATEGORIA(ID int auto_increment, NOME varchar(50) NOT NULL, primary key(ID)) engine= InnoDB;
+ment, NOME varchar(50) NOT NULL, primary key(ID)) engine= InnoDB;
