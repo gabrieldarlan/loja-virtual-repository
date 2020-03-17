@@ -9,22 +9,20 @@ public class TestaInsercaoComParametro {
 	public static void main(String[] args) throws SQLException {
 
 		ConnectionFactory connectionFactory = new ConnectionFactory();
-		try(Connection connection = connectionFactory.getConnection()){
+		try (Connection connection = connectionFactory.getConnection()) {
 			connection.setAutoCommit(false);
-	
+
 			try (PreparedStatement statement = connection.prepareStatement(
 					"INSERT INTO PRODUTO (nome, descricao) VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS);) {
 				adicionarVariavel("SmarTv", "45 polegadas", statement);
 				adicionarVariavel("Radio", "Radio de bateria", statement);
 				connection.commit();
-	
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("ROLLBACK EXECUTADO");
 				connection.rollback();
 			}
-			System.out.println("FECHANDO CONEXAO");
-			connection.close();
 		}
 	}
 
