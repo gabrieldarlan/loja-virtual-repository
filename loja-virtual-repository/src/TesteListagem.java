@@ -1,7 +1,7 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TesteListagem {
 
@@ -10,10 +10,10 @@ public class TesteListagem {
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		Connection connection = connectionFactory.getConnection();
 
-		Statement stm = connection.createStatement();
-		stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+		PreparedStatement prepareStatement = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+		prepareStatement.execute();
 
-		ResultSet rst = stm.getResultSet();
+		ResultSet rst = prepareStatement.getResultSet();
 
 		while (rst.next()) {
 			Integer id = rst.getInt("ID");
