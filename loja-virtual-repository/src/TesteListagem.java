@@ -23,5 +23,8 @@ public class TesteListagem {
 			System.out.println(nome);
 			System.out.println(descricao);
 		}
+		
+		prepareStatement.close();
+		connection.close();
 	}
 }
