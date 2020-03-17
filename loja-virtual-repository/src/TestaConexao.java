@@ -6,8 +6,9 @@ public class TestaConexao {
 
 	public static void main(String[] args) throws SQLException {
 
-		Connection connection = DriverManager.getConnection(ConstantesJDBC.URL, ConstantesJDBC.USER,
-				ConstantesJDBC.PASSWORD);
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		
+		Connection connection = connectionFactory.recuperarConexao();
 
 		System.out.println("fechando conexao");
 
